@@ -1,0 +1,9 @@
+<dependencies>
+    <dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-java</artifactId>
+            <version>0.10.2</version>
+        </dependency>
+    </dependency>
+</dependencies>
