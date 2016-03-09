@@ -7,11 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by laj on 8-3-2016.
+ * Created by laj on 9-3-2016.
  */
-public class Main {
-
-    public static void main(String [ ] args) throws Exception {
+public class Solver {
+    public static void GetEditsWeek() throws Exception {
         Logger LOG = LoggerFactory.getLogger(Main.class);
 
         final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
