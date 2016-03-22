@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by laj on 9-3-2016.
  */
-public class Solver {
-    public static void GetEditsWeek() throws Exception {
+public class Vraag1 {
+    public static void Solve() throws Exception {
         Logger LOG = LoggerFactory.getLogger(Main.class);
 
         final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
