@@ -12,6 +12,15 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by laj on 8-3-2016.
  */
+
+// Questions
+// =========
+// 1. Find out where the peaks of amount of edits are (per article if id’s are comparable) per community.
+// 2. Which language has the most active unique users during which time (where an active user is a user that has during a timespan X at least Y number of posts).
+// 3. Measure the similarity of pages (expressed in the number of edits for this article over a certain time span and the number of unique users that were involved in these edits)
+// 4. Cascading of edits over time
+// 5. Evolution of editing behaviour (will need data for a long time span)
+
 public class Main {
 
 
@@ -26,9 +35,10 @@ public class Main {
                 .flatMap(new LineSplitter())
                 .min(1);
 
-        smallestTimespan.print();
+//        smallestTimespan.writeAsCsv("file:///home/jeroen/Desktop/file.csv", "\n", "|");
+//        smallestTimespan.collect();
 
-        Vraag1.Solve();
+        Vraag3.Solve();
     }
 
     public static class LineSplitter implements FlatMapFunction<String, Tuple2<Integer, Long>> {

@@ -4,6 +4,7 @@ import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.tuple.Tuple3;
+import org.apache.flink.core.fs.FileSystem;
 import org.apache.flink.util.Collector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +46,8 @@ public class Vraag3 {
                         .where("f0").equalTo("f0")
                         .projectFirst(0).projectFirst(1).projectSecond(1);
 
-        combined.print();
+        combined.writeAsCsv("file:///home/jeroen/Desktop/file.csv", FileSystem.WriteMode.OVERWRITE);
+        combined.collect();
     }
 
     public static class LineSplitter implements FlatMapFunction<String, Tuple3<Integer, Integer, Integer>> {

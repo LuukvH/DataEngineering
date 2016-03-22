@@ -2,6 +2,7 @@ import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.core.fs.FileSystem;
 import org.apache.flink.util.Collector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,8 @@ public class Vraag1 {
                 .groupBy(0)
                 .sum(1);
 
-        weekEditCounts.print();
+        weekEditCounts.writeAsCsv("file:///home/jeroen/Desktop/file.csv", FileSystem.WriteMode.OVERWRITE);
+        weekEditCounts.collect();
     }
 
     public static class LineSplitter implements FlatMapFunction<String, Tuple2<Integer, Integer>> {
