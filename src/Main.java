@@ -23,38 +23,7 @@ import org.slf4j.LoggerFactory;
 
 public class Main {
 
-
     public static void main(String[] args) throws Exception {
-
-        final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
-
-        // Find smallest timespan
-        DataSet<String> text = env.readTextFile("./res/out.edit-itwiki");
-
-        DataSet<Tuple2<Integer, Long>> smallestTimespan = text
-                .flatMap(new LineSplitter())
-                .min(1);
-
-//        smallestTimespan.writeAsCsv("file:///home/jeroen/Desktop/file.csv", "\n", "|");
-//        smallestTimespan.collect();
-
         Vraag3.Solve();
     }
-
-    public static class LineSplitter implements FlatMapFunction<String, Tuple2<Integer, Long>> {
-        @Override
-        public void flatMap(String line, Collector<Tuple2<Integer, Long>> out) {
-            String[] linearguments = line.split(" ");
-
-            try {
-                int UserId = Integer.parseInt(linearguments[0]);
-                int PageId = Integer.parseInt(linearguments[1]);
-                long timestamp = Long.parseLong(linearguments[3]);
-
-                out.collect(new Tuple2<Integer, Long>(PageId, timestamp));
-            } catch(Exception ex)
-            {}
-        }
-    }
-
 }

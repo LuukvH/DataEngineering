@@ -1,3 +1,4 @@
+import org.apache.commons.io.FileUtils;
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.java.DataSet;
@@ -9,6 +10,10 @@ import org.apache.flink.util.Collector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
  * Created by laj on 22-3-2016.
  */
@@ -17,6 +22,9 @@ public class Vraag3 {
     public static void Solve() throws Exception {
         final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
         final Logger LOG = LoggerFactory.getLogger(Main.class);
+
+        Path currentRelativePath = Paths.get("");
+        String s = String.format("%s/output/vraag3/", currentRelativePath.toAbsolutePath().toString());
 
         // read text file from local files system
         DataSet<String> text = env.readTextFile("./res/out.edit-eswiki");
@@ -46,7 +54,11 @@ public class Vraag3 {
                         .where("f0").equalTo("f0")
                         .projectFirst(0).projectFirst(1).projectSecond(1);
 
-        combined.writeAsCsv("file:///home/jeroen/Desktop/output/", FileSystem.WriteMode.OVERWRITE);
+        combined.writeAsCsv(String.format("file:///%s", s), FileSystem.WriteMode.OVERWRITE);
+
+        // Output the execution plan
+        FileUtils.writeStringToFile(new File(String.format("%splan.json", s)), env.getExecutionPlan());
+
         combined.collect();
     }
 
