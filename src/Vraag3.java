@@ -19,15 +19,15 @@ import java.nio.file.Paths;
  */
 public class Vraag3 {
 
-    public static void Solve() throws Exception {
+    public static void Solve(String name, String resource) throws Exception {
         final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
         final Logger LOG = LoggerFactory.getLogger(Main.class);
 
         Path currentRelativePath = Paths.get("");
-        String s = String.format("%s/output/vraag3/", currentRelativePath.toAbsolutePath().toString());
+        String s = String.format("%s/output/vraag3/%s", currentRelativePath.toAbsolutePath().toString(), name);
 
         // read text file from local files system
-        DataSet<String> text = env.readTextFile("./res/out.edit-eswiki");
+        DataSet<String> text = env.readTextFile(resource);
 
         // Split text line and return unique UserId and PageId
         DataSet<Tuple2<Integer, Integer>> uniqueUsers = text
