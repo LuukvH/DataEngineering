@@ -43,7 +43,7 @@ def read_row(row):
 def categorize_data():
     chart = {}
 
-    with open('../processed_data/data', 'r') as data:
+    with open('../processed_data/es-article-edits-users', 'r') as data:
         for row in data:
             row = read_row(row)
             edits = row[1]
