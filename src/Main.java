@@ -29,7 +29,7 @@ public class Main {
         final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 
         // Find smallest timespan
-        DataSet<String> text = env.readTextFile("./res/out.edit-eswiki");
+        DataSet<String> text = env.readTextFile("./res/out.edit-itwiki");
 
         DataSet<Tuple2<Integer, Long>> smallestTimespan = text
                 .flatMap(new LineSplitter())

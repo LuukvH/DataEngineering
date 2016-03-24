@@ -46,7 +46,7 @@ public class Vraag3 {
                         .where("f0").equalTo("f0")
                         .projectFirst(0).projectFirst(1).projectSecond(1);
 
-        combined.writeAsCsv("file:///home/jeroen/Desktop/file.csv", FileSystem.WriteMode.OVERWRITE);
+        combined.writeAsCsv("file:///home/jeroen/Desktop/output/", FileSystem.WriteMode.OVERWRITE);
         combined.collect();
     }
 
