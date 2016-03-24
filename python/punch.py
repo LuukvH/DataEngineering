@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def draw_punchcard(infos, ax1=range(7), ax2=range(24),
+def draw_punchcard(infos, title, ax1=range(7), ax2=range(24),
                    ax1_ticks=['0-10', '11-20', '21-50', '51-100', '101-500', '501-1000', '>1000'],
                    ax2_ticks=['0-0.5', '0.5-0.6', '0.6-0.7', '0.7-0.8', '0.8-0.9', '>=0.9'],
                    ax1_label='users/edits', ax2_label='Amount'):
@@ -36,4 +36,5 @@ def draw_punchcard(infos, ax1=range(7), ax2=range(24),
     plt.axis([-.5, 2, -3.5, 5])
     # scale = 0.5
     # plt.gcf().set_size_inches(data.shape[1] * scale, data.shape[0] * scale, forward=True)
+    plt.gcf().canvas.set_window_title(title)
     plt.show()

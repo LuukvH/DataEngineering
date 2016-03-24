@@ -40,10 +40,10 @@ def read_row(row):
     return [int(n) for n in row.split(',')]
 
 
-def categorize_data():
+def categorize_data(url):
     chart = {}
 
-    with open('../processed_data/es-article-edits-users', 'r') as data:
+    with open(url, 'r') as data:
         for row in data:
             row = read_row(row)
             edits = row[1]
@@ -67,6 +67,9 @@ def create_punch_data(chart):
 
     return key_values
 
-chart = categorize_data()
-key_values = create_punch_data(chart)
-punch.draw_punchcard(key_values)
+languages = ['it', 'es', 'fr', 'de']
+for lang in languages:
+    url = '../processed_data/%s-article-edits-users' % lang
+    chart = categorize_data(url)
+    key_values = create_punch_data(chart)
+    punch.draw_punchcard(key_values, '%s wiki' % lang)
